@@ -37,7 +37,7 @@
                         <?php if (!empty($approvals)) {?>
                             <?php $i = 1; ?>
                             <?php foreach ($approvals as $approval) { 
-                                $text = $approval['status']== 1 ? 'Approved' : 'Pending';
+                                $text = $approval['status']== 1 ? 'Active' : 'In-active';
                                 $class = $approval['status']== 1 ? 'btn-success' : 'btn-warning';
 
                                 ?>
@@ -58,8 +58,8 @@
                                         class="fa fa-edit"></span></a>
 
                                 
-                                <a href="<?php echo base_url('admin/generate_pdf_and_send_email?id=' . $approval['id']) . '&download=1&type=approval_letter' ?>" class="btn btn-info" ><span
-                                        class="fa fa-eye"></span></a>       
+                                <a href="<?php echo base_url('admin/charge_application/' . $approval['id'])  ?>" class="btn btn-info" ><span
+                                        class="fa fa-plus"></span></a>       
                                 
                                 <!-- <a href="#" class="btn <?php echo $class; ?>" onClick="active_user_status('<?php echo $approval['id']; ?>', '<?php echo $approval['status']; ?>')"><?php echo $text; ?></a> -->
                             </td>

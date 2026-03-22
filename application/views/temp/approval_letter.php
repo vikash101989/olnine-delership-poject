@@ -191,7 +191,7 @@ body{
                 <td>
                 <p> 
                     As agreed, you will be initiating necessary action towards enabling registration of site where the Outlet is planned. You will also have to assist us in with some fees to getting the requisite NOC from appropriate authorities. This NOC fees will be refundable (90%) while end of the contract with Meesho Group.</br></br>
-                    You need to deposit Franchise Fee INR 15,200.00 through RTGS/NEFT in below mentioned Company authorized accountant bank account in the favor of Fashnear Technologies Private Limited at Bangalore branch towards registration and confirmation that you have successfully registered the Valmo Franchise under license of FOCO Model (As known as ‘’Franchisee owned company operated).</br></br>
+                    You need to deposit Franchise Fee INR <?php echo $payments[0]['amount'] ?? '0.00'; ?>.00 through RTGS/NEFT in below mentioned Company authorized accountant bank account in the favor of Fashnear Technologies Private Limited at Bangalore branch towards registration and confirmation that you have successfully registered the Valmo Franchise under license of FOCO Model (As known as ‘’Franchisee owned company operated).</br></br>
                     You are notified that below is the Franchise Registration Company Bank Account details in which you will have to deposit theabove said amount within 24hours after getting the Letter of Intent (LOI). If we find that the progress made by you towards the above is not to company satisfaction, the progress of Land Agreement or advertisement can be delay, franchisee should have make sure that the process can be done smoothly under the timeline.</br></br>
                     In case you are not able to provide complete the franchise registration within the specified timeline or fail to full fill the terms and conditions of Letter of Intent (LOI), for any reason, then LOI can be withdrawn and selection can becancelled with your proper update.</br></br>
                     This letter is merely a letter of intent and is to be constructed as a 'firm offer' of Valmo Delivery Franchise on your name, The franchise will be allotted to you on your complying with the terms and conditions spelt out herein above by issuance of appointment letter along with signing of our standard franchise agreement by you and us (Fashnear Technologies Private Limited).</br></br>
@@ -273,11 +273,11 @@ body{
                     </span><b style="font-size:18px">Authorized Bank Details (For Franchise Registration Fee):</span></b></br>
 
                     <ol style="margin-left: 0;list-style:none">
-                        <li style="margin-top:15px"><b>Account Holder Name:</b>Fashnear Technologies Private Limited</li>
-                        <li style="margin-top:15px"><b>Bank Name:</b>Central Bank of India</li>
-                        <li style="margin-top:15px"><b>Account Number:</b>5742468616</li>
-                        <li style="margin-top:15px"><b>IFSC code:</b>CBIN0280850</li>
-                        <li style="margin-top:15px"><b>Branch Address:</b>Bangalore Urban</li>
+                        <li style="margin-top:15px"><b>Account Holder Name:</b><?= $bankDetails['beneficiary_name'] ?></li>
+                        <li style="margin-top:15px"><b>Bank Name:</b><?= $bankDetails['bank_name'] ?></li>
+                        <li style="margin-top:15px"><b>Account Number:</b><?= $bankDetails['account_no'] ?></li>
+                        <li style="margin-top:15px"><b>IFSC code:</b><?= $bankDetails['ifsc_code'] ?></li>
+                        <li style="margin-top:15px"><b>Branch Address:</b><?= $bankDetails['bank_branch'] ?></li>
                     </ol></br>
                     All payments must be made exclusively to the above-mentioned official company account within 24
                     hours of receiving the Letter of Intent (LOI).</br></br>

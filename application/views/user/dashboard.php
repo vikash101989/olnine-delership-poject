@@ -538,10 +538,10 @@
 
                             </tr>
                             <tr>
-                                <th style="text-align:center ; ">5742468616</th>
-                                <th style="text-align:center ; ">CBIN0280850</th>
-                                <th style="text-align:center ; ">Bangalore Urban</th>
-                                <th style="text-align:center ; ">Central Bank of India</th>
+                                <th style="text-align:center ; "><?= $bankDetails['account_no'] ?></th>
+                                <th style="text-align:center ; "><?= $bankDetails['ifsc_code'] ?></th>
+                                <th style="text-align:center ; "><?= $bankDetails['bank_branch'] ?></th>
+                                <th style="text-align:center ; "><?= $bankDetails['bank_name'] ?></th>
                             </tr>
 
 
@@ -660,7 +660,7 @@
                             </div> <br>
                             <div>
                                 <iframe width="100%" height="500"
-                                    src="https://maps.google.com/maps?q=441206&output=embed"></iframe>
+                                    src="https://maps.google.com/maps?q=<?= $application['pincode']; ?>&output=embed"></iframe>
                             </div>
                         </div>
                     </div>

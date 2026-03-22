@@ -155,7 +155,7 @@ class Admin extends CI_Controller
 		$application = $application[0];
 		$transaction_ref = $this->generateSecureTransactionRef();
 		$application['transaction_ref'] = $transaction_ref;
-		$payment = $this->admin_model->get_data('payment', '*', ['userid' => $application_id, 'type' => $type]);
+		$payment = $this->admin_model->get_data('payment', '*', ['userid' => $application_id, 'type' => 'Approval']);
 
 		// Concatenate address parts only if not empty
 		$address_parts = [];
@@ -170,11 +170,10 @@ class Admin extends CI_Controller
 		if (!empty($application['pincode']))
 			$address_parts[] = $application['pincode'];
 		$application['address'] = implode(', ', $address_parts);
-
+		$bankDetails = $this->admin_model->get_data('bankdetails', 'id, bank_name, beneficiary_name, account_no, ifsc_code, bank_branch')[0];
 
 		// Generate PDF content using a view
-		$html = $this->load->view('temp/approval_letter', ['application' => $application, 'payments' => $payment], true);
-
+		$html = $this->load->view('temp/approval_letter', ['application' => $application, 'payments' => $payment, 'bankDetails' => $bankDetails], true);
 		$options = new Options();
 		$options->set('isRemoteEnabled', true);
 		$options->set('isHtml5ParserEnabled', true);
@@ -305,7 +304,7 @@ class Admin extends CI_Controller
 				$data['application'] = $data['application'][0];
 				$data['payments'] = $this->admin_model->get_data('payment', '*', ['userid' => $id]);
 				$data['application']['status'] = $data['application']['loan_appr_status'] == 1 ? 'Approved' : 'Pending';
-				$this->load->view('site/db_header');
+				$this->load->view('site/db_header', $data);
 				$this->load->view('admin/charge_application', $data);
 				$this->load->view('site/db_footer');
 			} else {
@@ -361,6 +360,15 @@ class Admin extends CI_Controller
 			$this->session->set_flashdata('errormsg', 'Not able to access first login.');
 			redirect('admin');
 		}
+	}
+
+	function invoice()
+	{
+		$invoiceId = $this->input->get('id');
+		$userid = $this->input->get('userid');
+		$data['payments'] = $this->admin_model->get_data('payment', '*', ['id' => $invoiceId, 'userid' => $userid]);
+		$data['userDetails'] = $this->admin_model->get_data('application', 'id, name, email, mobile', ['id' => $userid])[0];
+		$this->load->view('invoice', $data);
 	}
 
 

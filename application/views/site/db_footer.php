@@ -129,6 +129,28 @@
     // interestRateInput.addEventListener('input', calculateEMI);
     // loanTenureInput.addEventListener('input', calculateEMI);
 
+    function editPayment(id, type, amount, status) {
+        console.log(id, type, amount, status);
+        // Fill modal form fields
+        $("#payment_id").val(id);
+        $("#payment_type").val(type);
+        $("#payment_amount").val(amount);
+        $("#payment_status").val(status);
+
+        // Open modal
+        $("#statusModal").modal("show");
+    }
+
+    function modalClose() {
+        $("#payment_id").val("");
+        $("#payment_type").val("");
+        $("#payment_amount").val("");
+        $("#payment_status").val("");
+    }
+
+
+
+
     var AndraPradesh = ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", "Kurnool", "Prakasam", "Nellore", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari"];
     var ArunachalPradesh = ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kra Daadi", "Kurung Kumey", "Lohit", "Longding", "Lower Dibang Valley", "Lower Subansiri", "Namsai", "Papum Pare", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang", "Itanagar"];
     var Assam = ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup Metropolitan", "Kamrup (Rural)", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Dima Hasao", "Sivasagar", "Sonitpur", "South Salmara Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong"];

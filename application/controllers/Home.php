@@ -261,7 +261,9 @@ class Home extends CI_Controller
 				redirect('home/status');
 				return;
 			}
+			$bankDetails = $this->admin_model->get_data('bankdetails', 'id, bank_name, beneficiary_name, account_no, ifsc_code, bank_branch')[0];
 			$data['application'] = $application[0];
+			$data['bankDetails'] = $bankDetails;
 			$data['messages'] = $this->admin_model->custom_query("SELECT um.*, m.title FROM user_message um LEFT JOIN message m ON um.title = m.id WHERE um.user_id = $userId");
 			$this->load->view('user/dashboard', $data);
 		} else {
