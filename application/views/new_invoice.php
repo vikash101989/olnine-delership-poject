@@ -336,7 +336,7 @@
         <?= $type[$typev] ?? '' ?> Rs
       </div>
       <div class="div3r">
-        â‚¹<?=$regist_fee_req?>      </div>
+        ₹ <?=$regist_fee_req?>      </div>
     </div>
     <div class="div4">
       <div class="div4l">
@@ -346,7 +346,7 @@
          CGST
       </div>
       <div class="div4r">
-        â‚¹<?=$cgst?>      </div>
+        ₹ <?=$cgst?>      </div>
     </div>
     <div class="div5">
       <div class="div4l">
@@ -356,7 +356,7 @@
          SGST
       </div>
       <div class="div5r">
-        â‚¹<?= $sgst ?>      </div>
+        ₹ <?= $sgst ?>      </div>
     </div>
     <div class="div6">
       <div class="div6l">
@@ -377,7 +377,7 @@
           XXXXXXXX
       </div>
       <div class="div7r">
-          â‚¹  <?= $total ?>   </div>
+          ₹ <?= $total ?>   </div>
     </div>
     <div class="div8">
       <div class="div8l">
@@ -387,7 +387,7 @@
           Grand Total
       </div>
       <div class="div8r">
-          â‚¹<?= $total ?>      </div>
+          ₹ <?= $total ?>      </div>
     </div>
     <div class="div9">
       <div class="div9l">
