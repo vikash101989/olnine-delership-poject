@@ -367,8 +367,9 @@ class Admin extends CI_Controller
 		$invoiceId = $this->input->get('id');
 		$userid = $this->input->get('userid');
 		$data['payments'] = $this->admin_model->get_data('payment', '*', ['id' => $invoiceId, 'userid' => $userid]);
-		$data['userDetails'] = $this->admin_model->get_data('application', 'id, name, email, mobile', ['id' => $userid])[0];
-		$this->load->view('invoice', $data);
+		$data['userDetails'] = $this->admin_model->get_data('application', 'id, name, email, mobile, app_id, address', ['id' => $userid])[0];
+		//$this->load->view('invoice', $data);
+		$this->load->view('new_invoice', $data);
 	}
 
 
@@ -668,12 +669,13 @@ class Admin extends CI_Controller
 				'name' => $this->input->post('name'),
 				'email' => $this->input->post('email'),
 				'mobile' => trim($this->input->post('mobile')),
-				'pincode' => $this->input->post('pincode'),
+				'pincode' => $this->input->post('pin_code'),
 				'city' => $this->input->post('city'),
 				'district' => $this->input->post('district'),
 				'state' => $this->input->post('state'),
 				'address' => $this->input->post('address'),
 				'franchise_type' => $this->input->post('franchise_type'),
+				'father_name' => $this->input->post('father_name'),
 				'created_at' => date('Y-m-d H:i:s'),
 				'role' => 'customer',
 				'app_id' => 'VL/' . date('Y') . '/' . date('m') . '/' . rand(1000, 9999) . '/' . $this->generateUniqueCapitalString(5, $this->admin_model->get_column_values('application', 'app_id'))
