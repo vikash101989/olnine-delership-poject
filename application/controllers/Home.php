@@ -21,7 +21,8 @@ class Home extends CI_Controller
 		$this->load->view('home/index');
 		$this->load->view('site/ft_footer');
 	}
-	function loan_calculator(){
+	function loan_calculator()
+	{
 		$this->load->view('site/ft_header');
 		$this->load->view('home/loan_calculator');
 		$this->load->view('site/ft_footer');
@@ -66,31 +67,36 @@ class Home extends CI_Controller
 		$this->load->view('site/ft_footer');
 	}
 
-	function business_loan(){
+	function business_loan()
+	{
 		$this->load->view('site/ft_header');
 		$this->load->view('home/business_loan');
 		$this->load->view('site/ft_footer');
 	}
 
-		function commercial_loans(){
+	function commercial_loans()
+	{
 		$this->load->view('site/ft_header');
 		$this->load->view('home/commercial_loans');
 		$this->load->view('site/ft_footer');
 	}
 
-	function personal_loan(){
+	function personal_loan()
+	{
 		$this->load->view('site/ft_header');
 		$this->load->view('home/personal_loan');
 		$this->load->view('site/ft_footer');
 	}
 
-	function education_loan(){
+	function education_loan()
+	{
 		$this->load->view('site/ft_header');
 		$this->load->view('home/education_loan');
 		$this->load->view('site/ft_footer');
 	}
 
-	function car_loan(){
+	function car_loan()
+	{
 		$this->load->view('site/ft_header');
 		$this->load->view('home/car_loan');
 		$this->load->view('site/ft_footer');
@@ -132,7 +138,7 @@ class Home extends CI_Controller
 			'franchise_type' => $this->input->post('franchise_type'),
 			'created_at' => date('Y-m-d H:i:s'),
 			'role' => 'customer',
-			'app_id' => 'VL/' . date('Y') . '/' . date('m') . '/'. rand(1000, 9999) . '/' . $this->generateUniqueCapitalString(5, $this->admin_model->get_column_values('application', 'app_id'))
+			'app_id' => 'VL/' . date('Y') . '/' . date('m') . '/' . rand(1000, 9999) . '/' . $this->generateUniqueCapitalString(5, $this->admin_model->get_column_values('application', 'app_id'))
 		];
 		$inserted = $this->admin_model->insert_entry('application', $data_array);
 
@@ -264,6 +270,7 @@ class Home extends CI_Controller
 			$bankDetails = $this->admin_model->get_data('bankdetails', 'id, bank_name, beneficiary_name, account_no, ifsc_code, bank_branch')[0];
 			$data['application'] = $application[0];
 			$data['bankDetails'] = $bankDetails;
+			$data['payments'] = $this->admin_model->get_data('payment', '*', ['userid' => $userId]);
 			$data['messages'] = $this->admin_model->custom_query("SELECT um.*, m.title FROM user_message um LEFT JOIN message m ON um.title = m.id WHERE um.user_id = $userId");
 			$this->load->view('user/dashboard', $data);
 		} else {

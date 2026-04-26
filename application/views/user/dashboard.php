@@ -407,14 +407,14 @@
                             <a class="nav-link" href="<?php echo base_url('home'); ?>">Home <span
                                     class="sr-only">(current)</span></a>
                         </li>
-                        <?php if($application['status'] == 1){ ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('home/logout'); ?>">Logout</a>
-                        </li>
-                        <?php }  else {?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('home/status'); ?>">Check Status</a>
-                        </li>
+                        <?php if ($application['status'] == 1) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('home/logout'); ?>">Logout</a>
+                            </li>
+                        <?php } else { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('home/status'); ?>">Check Status</a>
+                            </li>
                         <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Track Order</a>
@@ -511,7 +511,7 @@
                                         <th scope="row">Franchise Types :</th>
                                         <td> <?= $application['franchise_type']; ?> </td>
                                         <th>Status</th>
-                                        <td style="color:red;"> <b>
+                                        <td style="color: <?= $application['status'] == 1 ? 'green' : 'red' ?>"> <b>
                                                 <?= $application['status'] == 1 ? 'Active' : 'Inactive'; ?></b></td>
 
                                         <!--<th  scope="row">Refund Amount  :</th>-->
@@ -582,6 +582,43 @@
 
 
 
+                            <div class="table-responsive mb-4 mt-4">
+                                <table id="zero-config" class="table table-hover" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (!empty($payments)) {
+                                            $i = 1;
+                                            foreach ($payments as $payment) {
+                                                $status = $payment['status'] == 1 ? 'Completed' : 'Pending';
+                                                ?>
+                                                <tr>
+                                                    <td><?= $payment['type'] ?></td>
+                                                    <td>
+                                                        <span class="btn btn-sm btn-success m-1"><?= $status ?></span>
+
+                                                        <?php if ($status == 'Completed') { ?>
+                                                            <a href="<?php echo base_url('admin/invoice?id=' . $payment['id'] . '&userid=' . $payment['userid']); ?>"
+                                                                title="Invoice" class="btn btn-sm btn-info m-1">Invoice</a>
+
+                                                        <?php } ?>
+
+                                                    </td>
+
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 col-md-10 hh-grayBox pt45 pb20">
