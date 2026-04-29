@@ -390,4 +390,25 @@ class Home extends CI_Controller
 			$this->load->view('site/user_footer', $data);
 		}
 	}
+
+	function upload_payment_proof()
+	{
+		if (!empty($this->session->userdata('role')) && $this->session->userdata('role') == 'customer') {
+			$userId = $this->session->userdata('userid');
+			$application = $this->admin_model->get_data('application', '*', ['id' => $userId]);
+			if (empty($application)) {
+				$this->session->set_flashdata('errormsg', 'Application not found.');
+				redirect('home/login');
+				return;
+			}
+			$data['payments'] = $this->admin_model->get_data('payment', '*', ['userid' => $userId]);
+			$data['application'] = $application[0];
+			$this->load->view('site/user_header');
+			$this->load->view('user/upload_payment_proof', $data);
+			$this->load->view('site/user_footer', $data);
+		} else {
+			$this->session->set_flashdata('errormsg', 'Please login to access dashboard.');
+			redirect('home/status');
+		}
+	}
 }

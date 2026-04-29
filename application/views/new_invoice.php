@@ -301,9 +301,9 @@
   $regist_fee_req = isset($payments[0]['amount']) 
     ? number_format((float)$payments[0]['amount'], 2, '.', '') 
     : '0.00';
-  $sgst = !empty($regist_fee_req) ? number_format((($payments[0]['amount'] * 6) / 100), 2, '.', '') : 00.00;
-  $cgst = !empty($regist_fee_req) ? number_format((($payments[0]['amount'] * 6) / 100), 2, '.', '') : 00.00;
-  $total = !empty($regist_fee_req) ? ($regist_fee_req + $sgst + $cgst) : 00.00;
+  $sgst = !empty($regist_fee_req) ? number_format((($payments[0]['amount'] * 9) / 100), 2, '.', '') : 00.00;
+  $cgst = !empty($regist_fee_req) ? number_format((($payments[0]['amount'] * 9) / 100), 2, '.', '') : 00.00;
+  $total = !empty($regist_fee_req) ? ($regist_fee_req - ($sgst + $cgst)) : 00.00;
   $typev = $payments[0]['type'] ? $payments[0]['type'] : '';
   $type = ['Approval' => 'Approval letter Invoice', 'Agreement' => 'Agreement Invoice', 'Transport' => 'Transport Invoice', 'NOC' => 'NOC Invoice'];
 
@@ -340,7 +340,8 @@
     </div>
     <div class="div4">
       <div class="div4l">
-        Summanry
+        Summanry 
+        <span style=""> (Approval charges  ₹ <?php echo $total; ?>) </span>
       </div>
       <div class="div4m">
          CGST
@@ -387,7 +388,7 @@
           Grand Total
       </div>
       <div class="div8r">
-          ₹ <?= $total ?>      </div>
+          ₹ <?= $regist_fee_req ?>      </div>
     </div>
     <div class="div9">
       <div class="div9l">

@@ -418,11 +418,20 @@
                         <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Track Order</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact us</a>
                         </li>
+                        <?php if ($application['status'] == 1) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('home/upload_payment_proof'); ?>">Upload
+                                    Payment Proof</a>
+                            </li>
+                        <?php } ?>
+
                     </ul>
                 </div>
             </div>
