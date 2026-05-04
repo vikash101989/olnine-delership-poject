@@ -328,6 +328,27 @@ class Admin extends CI_Controller
 			$amount = $this->input->post('amount');
 			$status = $this->input->post('status');
 
+			if ($userid && $_FILES['agreement_file']['name']) {
+			
+				$config['upload_path'] = './uploads';
+				$config['allowed_types'] = 'jpg|jpeg|png|pdf';
+				$config['max_size'] = 2048; // 2 MB limit
+				$config['encrypt_name'] = TRUE;
+
+				$this->load->library('upload', $config);
+
+				if ($this->upload->do_upload('agreement_file')) {
+					$uploadData = $this->upload->data();
+					$data['agreement_file'] = $uploadData['file_name'];
+					$this->admin_model->update_data('application', ['agreement_file' => $data['agreement_file']], ['id' => $userid]);
+					$this->session->set_flashdata('successmsg', 'Agreement file uploaded successfully.');
+				} else {
+					$this->session->set_flashdata('errormsg', $this->upload->display_errors());
+				}
+				redirect('admin/charge_application/' . $userid);
+				return;
+			}
+
 			if (empty($userid) || empty($type) || empty($amount) || !isset($status)) {
 				$this->session->set_flashdata('errormsg', 'All fields are required.');
 				redirect('admin/charge_application/' . $userid);

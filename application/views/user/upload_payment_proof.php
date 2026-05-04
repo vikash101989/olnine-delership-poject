@@ -341,19 +341,6 @@
 </head>
 
 <body>
-
-    <script>
-        swal({
-            title: "login successfully!",
-            text: "<?php echo $application['name']; ?>, Welcome to Valmo Logistics",
-            icon: "success",
-            button: "ok!",
-        });
-    </script>
-
-
-
-
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -427,11 +414,8 @@
                         </li>
                         <?php if ($application['status'] == 1) { ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo base_url('home/upload_payment_proof'); ?>">Add Payment Proof</a>
+                                <a class="nav-link" href="<?php echo base_url('home/upload_payment_proof'); ?>">Upload Payment Proof</a>
                             </li>
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusModal">
-                                Upload Payment Proof
-                            </button> -->
                         <?php } ?>
 
                     </ul>
@@ -452,286 +436,50 @@
     <main id="main">
         <section id="status" class="wow fadeInUp mt-4">
             <div class="container" id="apply">
-                <div>
-
-
-                </div>
-
-                <!--<table>-->
-                <!--                       <tr >-->
-                <!--<th colspan="4" scope="row"><img src="images/logo.png" alt="ADANI TOTAL GAS LIMITED  Company in India" width="150" height="100"></th>-->
-                <!--                        <th colspan="4" scope="row"><h1 style="text-align: center; color:#1d0aab;"><b>VALMO LOGISTICS </b></h1></th>-->
-                <!--                        <th scope="row" style="text-align: center">-->
-                <!--                             <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img width="48" height="48" src="https://img.icons8.com/glassmorphism/48/password.png" alt="password"/></button>-->
-                <!--                             <button style="width:auto;"><a href="admin/logout.php"><img width="48" margin-left="50px" height="48" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-logout-screen-from-the-working-portfolio-of-a-user-classic-color-tal-revivo.png"/></a></button>-->
-                <!--                        </th>-->
-
-                <!--                    </tr>-->
-                <!--</table>-->
-
-
-                <div class="section-header pt-4">
-                    <h1><b>Application No. <?php echo $application['app_id']; ?> </b></h1>
-                    <marquee>
-                        <p style="color:green;"><b>Congratulations <?= $application['name']; ?> - Your Location Has Been
-                                Approved - <b> <?= $application['address']; ?></b> </p> </b>
-                    </marquee>
-                </div>
-                <div class="row">
-                </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <tbody>
-                                    <!-- <tr>-->
-                                    <!--    <td></td>-->
-                                    <!--    <td></td>-->
-                                    <!--    <th>Apply Date</th>-->
-                                    <!--    <td>2024-08-05 </td>-->
-                                    <!--</tr>-->
-                                    <tr class="text-nowrap">
-                                        <th scope="row">Application No.</th>
-                                        <td> <?= $application['app_id']; ?> </td>
-                                        <th>Document No.</th>
-                                        <td>DX12T08Y00</td>
-                                    </tr>
-                                    <tr class="text-nowrap">
-                                        <th colspan="4" scope="row">Application Details</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Application Name</th>
-                                        <td> <?= $application['name']; ?> </td>
-                                        <th>Father / Husband Name</th>
-                                        <td <b> <?= $application['father_name']; ?> </b></td>
-                                    </tr>
-                                    <tr class="text-nowrap">
-                                        <th scope="row">Email</th>
-                                        <td> <?= $application['email']; ?> </td>
-                                        <th>Mobile</th>
-                                        <td> <?= $application['mobile']; ?> </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Pin Code</th>
-                                        <td> <b><?= $application['pincode']; ?></b> <b style="color:green;"> /
-                                                Approved</b></td>
-                                        <th>State</th>
-                                        <td> <?= $application['state']; ?> </td>
-                                    </tr>
-                                    <tr class="text-nowrap">
-                                        <th scope="row">Franchise Types :</th>
-                                        <td> <?= $application['franchise_type']; ?> </td>
-                                        <th>Status</th>
-                                        <td style="color: <?= $application['status'] == 1 ? 'green' : 'red' ?>"> <b>
-                                                <?= $application['status'] == 1 ? 'Active' : 'Inactive'; ?></b></td>
 
-                                        <!--<th  scope="row">Refund Amount  :</th>-->
-                                        <!--<td> </td>-->
-                                    </tr>
-                                    <tr scope="row">
-                                        <th colspan="4" scope="row">Approved Location : <?= $application['address']; ?>
-                                        </th>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
 
 
                         <table style="width:100%"><BR>
-                            <h3 style="text-align:center ; ">Fashnear Technologies Private Limited Bank Details</h3>
+                            <h3 style="text-align:center ; ">Payment Proof Details </h3>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#statusModal">
+                                    Upload Payment Proof
+                                </button>
+                            </div>
                             <tr>
-
-                                <th style="text-align:center ; ">Account Number </th>
-                                <th style="text-align:center ; ">IFSC Code</th>
-                                <th style="text-align:center ; ">Branch Name</th>
-                                <th style="text-align:center ; ">Bank Name</th>
-
+                                <th style="text-align:center ;">Type </th>
+                                <th style="text-align:center ; ">Payment Type </th>
+                                <th style="text-align:center ; ">Paid Amount</th>
+                                <th style="text-align:center ; ">Due Amount</th>
+                                <th style="text-align:center ; ">UTR Number</th>
+                                <th style="text-align:center ; ">Payment Proof</th>
                             </tr>
-                            <tr>
-                                <th style="text-align:center ; "><?= $bankDetails['account_no'] ?></th>
-                                <th style="text-align:center ; "><?= $bankDetails['ifsc_code'] ?></th>
-                                <th style="text-align:center ; "><?= $bankDetails['bank_branch'] ?></th>
-                                <th style="text-align:center ; "><?= $bankDetails['bank_name'] ?></th>
-                            </tr>
-
-
-
-                            <tr>
-
-
-                            </tr>
+                            <?php if (!empty($payments)) {
+                                foreach ($payments as $payment) {
+                                    if ($payment['paid_amount'] > 0) {
+                                        ?>
+                                        <tr>
+                                            <td style="text-align:center ; "><?php echo $payment['type']; ?></td>
+                                            <td style="text-align:center ; ?>"><?php echo $payment['payment_type']; ?></td>
+                                            <td style="text-align:center ; ?>"><?php echo $payment['paid_amount']; ?></td>
+                                            <td style="text-align:center ; ?>"><?php echo $payment['due_amount']; ?></td>
+                                            <td style="text-align:center ; ?>"><?php echo $payment['transaction_id']; ?></td>
+                                            <td style="text-align:center ; ?>">
+                                                <a href="<?php echo base_url('uploads/payment_proofs/' . $payment['payment_proof']); ?>"
+                                                    target="_blank" download>
+                                                    View Proof
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                }
+                            } ?>
                         </table>
 
-                        <div class="col-md-12">
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr class="thead-dark">
-                                        <th colspan="4" scope="row">Approval Letter </th>
-                                        <th scope="row">
 
-
-                                            <a target="_blank"
-                                                href="<?php echo base_url('admin/generate_pdf_and_send_email?id=' . $application['id']) . '&download=1&type=approval_letter' ?>"
-                                                class="btn btn-warning" class="btn btn-primary pull-right btn-sm"><i
-                                                    class="bi bi-file-earmark-arrow-down"></i>&nbsp;&nbsp;&nbsp;Approval
-                                                Letter Download</a>
-
-
-
-
-
-                                        </th>
-
-                                    </tr>
-
-
-
-
-                                </tbody>
-                            </table>
-                            <?php if (!empty($application['agreement_file'])) { ?>
-                                <div class="widget-content widget-content-area br-6 mt-4">
-
-                                    <div class="card">
-                                        <div class="card-body  text-center">
-                                            <a href="<?= base_url('uploads/' . $application['agreement_file']); ?>"
-                                                download>
-                                                <img src="<?= base_url('assets/media/pdf-svgrepo-com.svg'); ?>"
-                                                    alt="Click to Download" style="width: 50px;">
-                                            </a>
-                                            <div class="mt-3">
-                                                <a href="<?= base_url('uploads/' . $application['agreement_file']); ?>"
-                                                    download class="btn btn-primary">
-                                                    Download Agreement
-                                                </a>
-                                            </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-
-
-
-                            <div class="table-responsive mb-4 mt-4">
-                                <table id="zero-config" class="table table-hover" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Type</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        if (!empty($payments)) {
-                                            $i = 1;
-                                            foreach ($payments as $payment) {
-                                                $status = $payment['status'] == 1 ? 'Completed' : 'Pending';
-                                                ?>
-                                                <tr>
-                                                    <td><?= $payment['type'] ?></td>
-                                                    <td>
-                                                        <span class="btn btn-sm btn-success m-1"><?= $status ?></span>
-
-                                                        <?php if ($status == 'Completed') { ?>
-                                                            <a href="<?php echo base_url('admin/invoice?id=' . $payment['id'] . '&userid=' . $payment['userid']); ?>"
-                                                                title="Invoice" class="btn btn-sm btn-info m-1">Invoice</a>
-
-                                                        <?php } ?>
-
-                                                    </td>
-
-                                                </tr>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 col-md-10 hh-grayBox pt45 pb20">
-                                        <div class="row justify-content-between">
-                                            <div class="order-tracking No_completed">
-                                                <span class="is-complete"></span>
-                                                <p></p>
-                                            </div>
-                                            <div class="order-tracking No_completed">
-                                                <span class="is-complete"></span>
-                                                <p></p>
-                                            </div>
-                                            <div class="order-tracking No_completed">
-                                                <span class="is-complete"></span>
-                                                <p></p>
-                                            </div>
-                                            <div class="order-tracking No_completed">
-                                                <span class="is-complete"></span>
-                                                <p></p>
-                                            </div>
-                                            <div class="order-tracking">
-                                                <span class="is-complete"></span>
-                                                <p> </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div style="background-color: #d8d8d8;
-    border-radius: 20px;
-    position: relative;
-    margin: 15px 0;
-    height: 30px;
-    width: 100%;
-" class="progress">
-                                <div style="background: linear-gradient(to left, #F2709C, #FF9472);
-    box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
-    border-radius: 20px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 0;
-    opacity: 0;
-    transition: 1s ease 0.3s;" class="progress-done" data-done="0">
-                                    Work Completed 0%
-                                </div>
-                            </div>
-
-                            <div>
-                                <div id="div3" style=" text-align: center;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                </div>
-                            </div> <br>
-                            <div>
-                                <iframe width="100%" height="500"
-                                    src="https://maps.google.com/maps?q=<?= $application['pincode']; ?>&output=embed"></iframe>
-                            </div>
-                        </div>
                     </div>
                 </div>
         </section>

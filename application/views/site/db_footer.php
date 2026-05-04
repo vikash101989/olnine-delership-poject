@@ -147,7 +147,15 @@
         $("#payment_amount").val("");
         $("#payment_status").val("");
     }
-
+    function toggleFileUpload(type) {
+        if (type && type.toLowerCase() === 'agreement') { // Show file upload for 'Agreement' type
+            $('#fileUploadGroup').removeClass('d-none');
+            $('#payment_file').prop('required', true);
+        } else {
+            $('#fileUploadGroup').addClass('d-none');
+            $('#payment_file').prop('required', false).val('');
+        }
+    }
 
 
 

@@ -87,5 +87,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('BASE_URL', 'http://localhost/nd/');
 define('API_URL', 'http://localhost/nd/api/');
 define('PAYMENT_CHARGES', ['Approval', 'Agreement', 'NOC', 'Transport']);
+define('PAYMENT_TYPES', ['UPI', 'IMPS', 'NEFT', 'RTGS','Bank_Transfer']);
 
 

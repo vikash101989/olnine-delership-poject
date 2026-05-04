@@ -403,12 +403,58 @@ class Home extends CI_Controller
 			}
 			$data['payments'] = $this->admin_model->get_data('payment', '*', ['userid' => $userId]);
 			$data['application'] = $application[0];
-			$this->load->view('site/user_header');
 			$this->load->view('user/upload_payment_proof', $data);
-			$this->load->view('site/user_footer', $data);
 		} else {
 			$this->session->set_flashdata('errormsg', 'Please login to access dashboard.');
 			redirect('home/status');
+		}
+	}
+
+
+	function add_payment()
+	{
+		if (!empty($this->session->userdata('role')) && $this->session->userdata('role') == 'customer') {
+
+			$userid = $this->input->post('application_id');
+			$type = $this->input->post('type');
+			$data['payment_type'] = $this->input->post('payment_type');
+			$data['paid_amount'] = $this->input->post('paid_amount');
+			$data['due_amount'] = $this->input->post('due_amount');
+			$data['transaction_id'] = $this->input->post('transaction_id');
+
+			$id = $this->input->post('id'); // for edit
+
+			if ($userid && $_FILES['payment_proof']['name']) {
+
+				$config['upload_path'] = './uploads/payment_proofs/';
+				$config['allowed_types'] = 'jpg|jpeg|png|pdf';
+				$config['max_size'] = 2048; // 2 MB limit
+				$config['encrypt_name'] = TRUE;
+
+				$this->load->library('upload', $config);
+
+				if ($this->upload->do_upload('payment_proof')) {
+					$uploadData = $this->upload->data();
+					$data['payment_proof'] = $uploadData['file_name'];
+				} else {
+					$this->session->set_flashdata('errormsg', $this->upload->display_errors());
+					redirect('home/upload_payment_proof/' . $userid);
+					return;
+				}
+			} else {
+				$this->session->set_flashdata('errormsg', 'User ID and Payment Proof are required.');
+				redirect('home/upload_payment_proof/' . $userid);
+				return;
+			}
+			$data['payment_proof'] = $uploadData['file_name'];
+			$this->admin_model->update_data('payment', $data, ['userid' => $userid, 'type' => $type]);
+			echo $this->db->last_query();exit;
+			$this->session->set_flashdata('successmsg', 'Payment proof uploaded successfully.');
+
+			redirect('home/upload_payment_proof/' . $userid);
+		} else {
+			$this->session->set_flashdata('errormsg', 'Not able to access first login.');
+			redirect('admin');
 		}
 	}
 }

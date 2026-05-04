@@ -23,8 +23,14 @@
                         <div class="widget-content widget-content-area br-6">
                             <h4>Payments</h4>
 
-                            <div style="text-align: right; margin-bottom: 10px;">
+                            <div style="text-align: center;">
+                                <?php echo $application['name'] . ' (' . $application['appid'] . ')'; ?>
+                            </div>
 
+                            <div style="text-align: right; margin-bottom: 10px;">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#fileModal">
+                                    Upload Agreement
+                                </button>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#statusModal">
                                     Add New
@@ -61,7 +67,7 @@
                                                     <td><?= $payment['created_at'] ?></td>
                                                     <td><?= $payment['status'] == 0 ? 'Pending' : 'Paid' ?></td>
                                                     <td>
-                                                        <a href="<?php echo base_url('admin/invoice?id=' . $payment['id'] . '&userid=' . $payment['userid'] ); ?>"
+                                                        <a href="<?php echo base_url('admin/invoice?id=' . $payment['id'] . '&userid=' . $payment['userid']); ?>"
                                                             title="Invoice" class="btn btn-sm btn-success m-1">Invoice</a>
                                                     </td>
                                                     <td>
@@ -82,12 +88,42 @@
                                                 </tr>
                                                 <?php
                                             }
+                                            if (!empty($application['agreement_file'])) {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="8" class="text-center" style="color: seagreen;">
+
+                                                        <!-- <img src="<?= base_url('uploads/' . $application['agreement_file']); ?>" alt="Download Agreement" class="img-fluid"> -->
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
                                         }
                                         ?>
 
                                     </tbody>
                                 </table>
                             </div>
+                            <?php if (!empty($application['agreement_file'])) { ?>
+                                <div class="widget-content widget-content-area br-6 mt-4">
+                    
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <a href="<?= base_url('uploads/' . $application['agreement_file']); ?>"
+                                                download>
+                                                <img src="<?= base_url('assets/media/pdf-svgrepo-com.svg'); ?>"
+                                                    alt="Click to Download" style="width: 50px;">
+                                            </a>
+                                        <div class="mt-3">
+                                            <a href="<?= base_url('uploads/' . $application['agreement_file']); ?>" download class="btn btn-primary">
+                                                Download Agreement
+                                            </a>
+                                        </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -110,7 +146,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="paymentForm" action="<?= base_url('admin/add_payment'); ?>" method="post">
+                <form id="paymentForm" action="<?= base_url('admin/add_payment'); ?>" method="post"
+                    enctype="multipart/form-data">
                     <input type="hidden" name="id" id="payment_id"> <!-- for edit -->
                     <input type="hidden" name="application_id" value="<?= $application['id']; ?>">
                     <div class="form-group">
@@ -127,7 +164,6 @@
                         <label>Amount</label>
                         <input type="text" name="amount" id="payment_amount" class="form-control" required>
                     </div>
-
                     <div class="form-group">
                         <label>Status</label>
                         <select name="status" id="payment_status" class="form-control" required>
@@ -137,6 +173,34 @@
                         </select>
                     </div>
 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            onclick="modalClose()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fileModalLabel">Upload File</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="modalClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="paymentForm" action="<?= base_url('admin/add_payment'); ?>" method="post"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="application_id" value="<?= $application['id']; ?>">
+                    <div class="form-group">
+                        <label>File</label>
+                        <input type="file" name="agreement_file" id="agreement_file" class="form-control" required>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             onclick="modalClose()">Close</button>
